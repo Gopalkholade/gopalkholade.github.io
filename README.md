@@ -62,3 +62,6 @@ The Astro config derives the GitHub Pages project path from `GITHUB_REPOSITORY`,
 | `npm run preview` | Preview the built site locally |
 | `npm run seed` | Write the included sample data to Firestore |
 | `npm run sync:github` | Sync public repositories into Firestore |
+| `npm run generate:resume` | Generate `public/resume.pdf`, `public/resume.md`, and `public/resume.json` from profile data and featured Firestore projects |
+
+Resume generation requires the Firebase credentials used by the GitHub sync workflow (or a local `serviceAccountKey.json`) and reads the profile and experience files from `src/data/`.

@@ -8,7 +8,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync:repos": "node scripts/sync-github.mjs"
+    "sync:repos": "node scripts/sync-github.mjs",
+    "generate:resume": "node scripts/generate-resume.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -18,6 +19,7 @@
     "firebase-admin": "^13.1.0",
     "marked": "^15.0.7",
     "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.20.2",
     "sanitize-html": "^2.14.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"

@@ -2,6 +2,7 @@ import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import fs from 'node:fs';
 import path from 'node:path';
+import { generateResumePdf } from './lib/resume-pdf.mjs';
 
 function initFirebase() {
   if (getApps().length > 0) return getFirestore();
@@ -223,12 +224,15 @@ async function buildResume() {
   // 5. Output public assets
   const jsonOut = path.join(publicDir, 'resume.json');
   const mdOut = path.join(publicDir, 'resume.md');
+  const pdfOut = path.join(publicDir, 'resume.pdf');
 
   fs.writeFileSync(jsonOut, JSON.stringify(resumePayload, null, 2), 'utf8');
   fs.writeFileSync(mdOut, generateMarkdownResume(profile, experiences, categorizedSkills, projects), 'utf8');
+  await generateResumePdf({ profile, experiences, categorizedSkills, projects }, pdfOut);
 
   console.log(`✅ Generated: ${jsonOut}`);
   console.log(`✅ Generated: ${mdOut}`);
+  console.log(`✅ Generated: ${pdfOut}`);
 }
 
 buildResume().catch(err => {
