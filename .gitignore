@@ -9,3 +9,4 @@ yarn-debug.log*
 pnpm-debug.log*
 serviceAccountKey.json
 tools/
+tools/Profile.pdf
