@@ -116,8 +116,10 @@ async function parseLinkedInPdf() {
     ? [...new Set([...(existingProfile.certifications || []), ...sections.Certifications])]
     : (existingProfile.certifications || []);
 
+  const extractedName = lines[0]?.toLowerCase() === 'contact' ? '' : lines[0];
   const updatedProfile = {
-    name: lines[0] || existingProfile.name || "Gopal Kholade",
+    name: existingProfile.name || extractedName || "Gopal Kholade",
+    resumeName: existingProfile.resumeName || existingProfile.name || "Gopal Kholade",
     headline: lines[1] || existingProfile.headline || "",
     bio: sections.Summary.join(' ') || existingProfile.bio || "",
     location: lines[2] || existingProfile.location || "Pune, Maharashtra, India",

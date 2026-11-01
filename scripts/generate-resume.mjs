@@ -212,10 +212,15 @@ async function buildResume() {
 
   // 3. Classify topics
   const categorizedSkills = categorizeHarvestedSkills(Array.from(rawTopics));
+  const { resumeName, ...profileData } = profile;
+  const resumeProfile = {
+    ...profileData,
+    name: resumeName || profile.name || 'Gopal Kholade',
+  };
 
   // 4. Construct unified payload
   const resumePayload = {
-    ...profile,
+    ...resumeProfile,
     skills: categorizedSkills,
     experience: experiences,
     projects: projects
@@ -227,8 +232,8 @@ async function buildResume() {
   const pdfOut = path.join(publicDir, 'resume.pdf');
 
   fs.writeFileSync(jsonOut, JSON.stringify(resumePayload, null, 2), 'utf8');
-  fs.writeFileSync(mdOut, generateMarkdownResume(profile, experiences, categorizedSkills, projects), 'utf8');
-  await generateResumePdf({ profile, experiences, categorizedSkills, projects }, pdfOut);
+  fs.writeFileSync(mdOut, generateMarkdownResume(resumeProfile, experiences, categorizedSkills, projects), 'utf8');
+  await generateResumePdf({ profile: resumeProfile, experiences, categorizedSkills, projects }, pdfOut);
 
   console.log(`✅ Generated: ${jsonOut}`);
   console.log(`✅ Generated: ${mdOut}`);

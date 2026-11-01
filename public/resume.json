@@ -1,0 +1,313 @@
+{
+  "name": "Gopal Kholade",
+  "headline": "Pune, Maharashtra",
+  "bio": "Data Analyst with strong experience in data transformation, pipeline automation, and exploratory data analysis, transitioning applied skills into Machine Learning and Applied AI. Proficient in Python, SQL, PySpark, and BI visualization to convert complex multi-source datasets into clean, actionable data products. Hands-on experience building automated data ingestion workflows, predictive modeling pipelines, and exploring GenAI architectures (PEFT, RAG, and local LLM deployment). Focused on engineering scalable, end-to-end data and machine learning solutions that automate operational processes and drive data-informed decisions.",
+  "location": "8830081568 (Mobile)",
+  "email": "kholadegopal12@gmail.com",
+  "linkedinUrl": "https://www.linkedin.com/in/gopalkholade",
+  "githubUrl": "https://github.com/GopalKholade",
+  "resumeFile": "/resume.pdf",
+  "skills": {
+    "languages": [
+      "Google Api",
+      "Google Gemini",
+      "Python",
+      "Machine Learning Algorithms",
+      "Pandas Python",
+      "MySQL",
+      "SQL"
+    ],
+    "dataAnalytics": [],
+    "aiAndML": [
+      "LLM",
+      "Nlp",
+      "Nlp Machine Learning",
+      "Machine Learning"
+    ],
+    "toolsAndCloud": [],
+    "domainCompetencies": [
+      "Ats",
+      "Streamlit",
+      "Classification",
+      "Decision Trees",
+      "Hate Speech Detection",
+      "Api",
+      "Huggingface",
+      "Image Generation",
+      "Flask Application",
+      "Hybrid Recommender System",
+      "Recommender System",
+      "Spotify Web Api",
+      "Hyperopt",
+      "Hyperparameter Optimization",
+      "Mlflow",
+      "Mlops",
+      "Modeling",
+      "Wordcloud",
+      "Window Functions"
+    ]
+  },
+  "certifications": [
+    "Project Management Foundations: Requirements",
+    "Business Analyst and Project Manager Collaboration",
+    "Learning Data Science: Understanding the Basics",
+    "Introduction to Career Skills in Data Analytics",
+    "SQL",
+    "Project Management Foundations:",
+    "Requirements",
+    "Business Analyst and Project",
+    "Manager Collaboration",
+    "Learning Data Science:",
+    "Understanding the Basics",
+    "Introduction to Career Skills in Data",
+    "Analytics",
+    "Gopal Kholade",
+    "Data & Machine Learning Analyst | Python, PySpark, Scikit-Learn,",
+    "SQL | Building Scalable ML Workflows & Data Pipelines",
+    "Pune District, Maharashtra, India"
+  ],
+  "education": {
+    "institution": "Sant Gadge Baba Amravati University, Amravati",
+    "degree": "Bachelor of Engineering - BE, Information Technology · (August 2018 - May",
+    "duration": "2022)"
+  },
+  "experience": [
+    {
+      "role": "Data Research Analyst",
+      "company": "On Direct Marketing Services",
+      "location": "Pune District, Maharashtra, India",
+      "startDate": "December 2024",
+      "endDate": "Present",
+      "isCurrent": true,
+      "order": 1,
+      "summary": "Data cleaning, pipeline automation, exploratory analysis, and cross-functional reporting.",
+      "achievements": [
+        "Data Cleaning & Pipeline Automation: Engineered and maintained automated data extraction, cleaning, and validation pipelines using Python and SQL, reducing manual processing overhead and ensuring high data integrity across enterprise datasets.",
+        "Exploratory Data Analysis & Analytics: Conducted in-depth exploratory data analysis (EDA) and performance tracking; created interactive Tableau and BI dashboards to visualize key operational KPIs and metrics.",
+        "Feature Engineering & Preprocessing: Applied statistical normalization, outlier treatment, and data wrangling techniques to prepare structured raw inputs for analytical modeling and downstream reporting.",
+        "Cross-Functional Collaboration: Partnered with stakeholders to translate business requirements into technical data schemas, actionable metric dashboards, and automated reporting systems."
+      ],
+      "skills": [
+        "Python",
+        "SQL",
+        "Data Pipelines",
+        "Tableau",
+        "EDA",
+        "Feature Engineering",
+        "Data Wrangling"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "forks": 3,
+      "repoUrl": "https://github.com/Gopalkholade/ATS-Resume-Scanner",
+      "topics": [
+        "ats",
+        "google-api",
+        "google-gemini",
+        "llm",
+        "python",
+        "streamlit"
+      ],
+      "show": 1,
+      "description": "ATS resume scanner working on Google Gemini API",
+      "published": true,
+      "stars": 8,
+      "title": "ATS Resume Scanner",
+      "readmeMarkdown": "",
+      "demoUrl": "",
+      "techStack": [
+        "ats",
+        "google-api",
+        "google-gemini",
+        "llm",
+        "python",
+        "streamlit"
+      ],
+      "category": "ai-ml",
+      "slug": "ATS-Resume-Scanner",
+      "updatedAt": "2026-07-30T09:46:11Z"
+    },
+    {
+      "forks": 1,
+      "repoUrl": "https://github.com/Gopalkholade/Chennai-house-price-predictor",
+      "topics": [],
+      "show": 1,
+      "description": "Production-grade engineering & data pipeline repository.",
+      "published": true,
+      "stars": 1,
+      "title": "Chennai House Price Predictor",
+      "readmeMarkdown": "",
+      "demoUrl": "",
+      "techStack": [
+        "Jupyter Notebook"
+      ],
+      "category": "ai-ml",
+      "slug": "Chennai-house-price-predictor",
+      "updatedAt": "2023-07-29T08:36:41Z"
+    },
+    {
+      "forks": 0,
+      "repoUrl": "https://github.com/Gopalkholade/End-to-End-Hate-Speech-Detection",
+      "topics": [
+        "classification",
+        "decision-trees",
+        "hate-speech-detection",
+        "machine-learning-algorithms",
+        "nlp",
+        "nlp-machine-learning"
+      ],
+      "show": 1,
+      "description": "It's an End-to-end Hate speech detection system with decision tree classifier.",
+      "published": true,
+      "stars": 1,
+      "title": "End To End Hate Speech Detection",
+      "readmeMarkdown": "# Hate Speech Detection using Decision Trees\n\nThis repository contains code for detecting hate speech in tweets using a decision tree classifier. The model is trained on a dataset of labeled tweets and can predict whether a given tweet falls into one of three categories: \"Hate Speech,\" \"Offensive Language,\" or \"No Hate and Offensive.\"\n\n## Prerequisites\n\nBefore running the code, ensure you have the following installed:\n\n- Python 3.9\n- `nltk` library\n- `pandas`\n- `numpy`\n- `scikit-learn`\n\n## Usage\n\n1. **Data Preparation**:\n   - The dataset is loaded from a CSV file named `twitter.csv`.\n   - The `class` column is mapped to human-readable labels: 0 (Hate Speech), 1 (Offensive Language), and 2 (No Hate and Offensive).\n   - The relevant columns are extracted: `tweet` (text) and `labels`.\n\n2. **Text Preprocessing**:\n   - The `clean` function performs the following preprocessing steps:\n     - Converts text to lowercase.\n     - Removes URLs, special characters, and digits.\n     - Tokenizes the text.\n     - Removes stopwords.\n     - Applies stemming using the Snowball stemmer.\n\n3. **Feature Extraction**:\n   - The `CountVectorizer` is used to convert the preprocessed tweet text into a bag-of-words representation.\n\n4. **Model Training and Evaluation**:\n   - The dataset is split into training and testing sets.\n   - A decision tree classifier (`DecisionTreeClassifier`) is trained on the training data.\n   - The model's accuracy is evaluated on the testing data.\n\n5. **Hate Speech Detection Web App**:\n   - The `app.py` file creates a Streamlit web app.\n   - Users can input a tweet, and the model predicts whether it contains hate speech, offensive language, or neither.\n\n## How to Run\n\n1. Install the required libraries:\n   ```bash\n   pip install -r requirements.txt\n   ```\n\n2. Run the Streamlit app:\n   ```bash\n   streamlit run app.py\n   ```\n\n## Example\n\n![Streamlit App Screenshot](./resources/sample.png)\n\n---\n\nFeel free to customize this README with additional information about your project. If you have any questions or need further assistance, feel free to ask! 🚀\n",
+      "demoUrl": "",
+      "techStack": [
+        "classification",
+        "decision-trees",
+        "hate-speech-detection",
+        "machine-learning-algorithms",
+        "nlp",
+        "nlp-machine-learning"
+      ],
+      "category": "ai-ml",
+      "slug": "End-to-End-Hate-Speech-Detection",
+      "updatedAt": "2024-05-24T19:31:51Z"
+    },
+    {
+      "forks": 1,
+      "repoUrl": "https://github.com/Gopalkholade/Image-Generator-using-Hugging-Face-Model-API",
+      "topics": [
+        "api",
+        "huggingface",
+        "image-generation"
+      ],
+      "show": 1,
+      "description": "This Python script generates an image based on a given prompt using the Hugging Face model API.",
+      "published": true,
+      "stars": 1,
+      "title": "Image Generator Using Hugging Face Model API",
+      "readmeMarkdown": "\n# Image Generator using Hugging Face Model API\n\nThis Python script generates an image based on a given prompt using the Hugging Face model API. It follows these steps:\n\n1. **Requirements**:\n    - Ensure you have Python installed.\n    - Install required packages using `pip install requests pillow`.\n\n2. **Usage**:\n    - Modify the `prompt` variable in the `generator` function to specify your desired image content.\n    - Replace `<Your_token>` with a valid Hugging Face API token.\n    - Run the script: `python script_name.py`.\n\n3. **Generated Image**:\n    - The resulting image will be saved in the current directory (or the specified `save_path`) as \"image.png\".\n\n4. **Example**:\n\n    ```python\n    if __name__ == \"__main__\":\n        generator(prompt=\"Sheep with violin\", authorization_token=\"<Your_token>\")\n    ```\n\nFeel free to customize the prompt and explore different image generations using this script! 🎨📸\n",
+      "demoUrl": "",
+      "techStack": [
+        "api",
+        "huggingface",
+        "image-generation"
+      ],
+      "category": "data-analytics",
+      "slug": "Image-Generator-using-Hugging-Face-Model-API",
+      "updatedAt": "2025-02-07T05:33:25Z"
+    },
+    {
+      "forks": 0,
+      "repoUrl": "https://github.com/Gopalkholade/Music-Recommender-System",
+      "topics": [
+        "api",
+        "flask-application",
+        "hybrid-recommender-system",
+        "machine-learning",
+        "pandas-python",
+        "recommender-system",
+        "spotify-web-api"
+      ],
+      "show": 1,
+      "description": "The \"Music Recommender System using Spotify API\" project aims to create a personalized music recommendation system for users based on their listening preferences and behavior. By leveraging the Spotify API, we can access a vast collection of music data, including tracks, artists, genres, and user playlists.",
+      "published": true,
+      "stars": 1,
+      "title": "Music Recommender System",
+      "readmeMarkdown": "# Music recommendation system\n\n## Introduction\n\nThe \"Music Recommender System using Spotify API\" project aims to create a personalized music recommendation system for users based on their listening preferences and behavior. By leveraging the Spotify API, we can access a vast collection of music data, including tracks, artists, genres, and user playlists.\n\nKey elements of the project:\n\n* Generating Access Token\n* Extracting Dataframe from API\n* Weighted and Content Based Filtering\n* Hybrid Recommender System\n* Generating Recomendations\n\nOverall, the \"Music Recommender System using Spotify API\" project aims to enhance the music discovery experience for users by suggesting relevant songs and artists based on their individual preferences.\n",
+      "demoUrl": "",
+      "techStack": [
+        "api",
+        "flask-application",
+        "hybrid-recommender-system",
+        "machine-learning",
+        "pandas-python",
+        "recommender-system",
+        "spotify-web-api"
+      ],
+      "category": "ai-ml",
+      "slug": "Music-Recommender-System",
+      "updatedAt": "2025-05-28T19:24:00Z"
+    },
+    {
+      "forks": 0,
+      "repoUrl": "https://github.com/Gopalkholade/Phishing-Detection",
+      "topics": [
+        "hyperopt",
+        "hyperparameter-optimization",
+        "machine-learning",
+        "mlflow",
+        "mlops",
+        "modeling",
+        "nlp",
+        "wordcloud"
+      ],
+      "show": 1,
+      "description": "A classification project on phishing detection",
+      "published": true,
+      "stars": 1,
+      "title": "Phishing Detection",
+      "readmeMarkdown": "",
+      "demoUrl": "",
+      "techStack": [
+        "hyperopt",
+        "hyperparameter-optimization",
+        "machine-learning",
+        "mlflow",
+        "mlops",
+        "modeling",
+        "nlp",
+        "wordcloud"
+      ],
+      "category": "ai-ml",
+      "slug": "Phishing-Detection",
+      "updatedAt": "2025-06-19T08:11:36Z"
+    },
+    {
+      "forks": 1,
+      "repoUrl": "https://github.com/Gopalkholade/Pizza-Sales-Analysis-with-SQL",
+      "topics": [
+        "mysql",
+        "sql",
+        "window-functions"
+      ],
+      "show": 1,
+      "description": "Pizza Sales analytics with sql",
+      "published": true,
+      "stars": 2,
+      "title": "Pizza Sales Analysis With SQL",
+      "readmeMarkdown": "\n# SQL Analytics Project: Pizza Sales Analysis\n\n## Introduction\n\nThis project focuses on analyzing pizza sales data using SQL. We'll explore various aspects of the dataset, including order quantities, revenue, pizza types, and more. The goal is to gain insights that can inform business decisions related to pizza sales.\n\n## Dataset\n\nBefore diving into the specific questions, let's briefly describe the dataset:\n\n- **Tables**: We'll work with several tables, including an `Orders` table, a `Pizzas` table, and potentially other related tables.\n- **Columns**: Key columns include `order_id`, `pizza_id`, `quantity`, `price`, `size`, and `order_date`.\n\n## Basic Questions\n\n1. **Retrieve the total number of orders placed**\n\n2. **Calculate the total revenue generated from pizza sales**\n\n3. **Identify the highest-priced pizza**\n\n4. **Identify the most common pizza size ordered**\n\n5. **List the top 5 most ordered pizza types along with their quantities**\n\n## Intermediate Questions\n\n1. **Total quantity of each pizza category ordered**\n\n2. **Distribution of orders by hour of the day**\n\n3. **Category-wise distribution of pizzas**\n\n4. **Average number of pizzas ordered per day**\n\n5. **Top 3 most ordered pizza types based on revenue**\n\n## Advanced Questions\n\n1. **Percentage contribution of each pizza type to total revenue**\n\n2. **Cumulative revenue generated over time**\n\n3. **Top 3 most ordered pizza types based on revenue for each pizza category**\n\n## Conclusion\n\nSummarize the key findings and insights from your analysis. Consider visualizations (e.g., charts, graphs) to enhance understanding.\n\n---\n\nFeel free to customize the README by adding details about your dataset, SQL environment, and any additional context specific to your project. Good luck with your SQL analytics project! 🍕📊¹³\n\n---\nI've provided a high-level overview, but you can expand on each section with more details specific to your project. If you need further assistance or have any specific requirements, feel free to ask! 😊\n",
+      "demoUrl": "",
+      "techStack": [
+        "mysql",
+        "sql",
+        "window-functions"
+      ],
+      "category": "data-analytics",
+      "slug": "Pizza-Sales-Analysis-with-SQL",
+      "updatedAt": "2026-10-18T03:21:27Z"
+    },
+    {
+      "forks": 0,
+      "repoUrl": "https://github.com/Gopalkholade/Solar-Irradiance-Prediction",
+      "topics": [],
+      "show": 1,
+      "description": "ML model for Solar Radiation Prediction",
+      "published": true,
+      "stars": 1,
+      "title": "Solar Irradiance Prediction",
+      "readmeMarkdown": "### Solar Radiance is a unit for how much sunlight you are capturing. In this project we are going to predict this Solar Radiance\n### These datasets are meteorological data from the HI-SEAS weather station from four months (September through December 2016) between Mission IV and Mission V.\n\n### For each dataset, the fields are:\n\n#### A row number (1-n) useful in sorting this export's results\nThe UNIX time_t date (seconds since Jan 1, 1970). Useful in sorting this export's results with other export's results\nThe date in yyyy-mm-dd format\nThe local time of day in hh:mm:ss 24-hour format\nThe numeric data, if any (may be an empty string)\nThe text data, if any (may be an empty string)\n\n#### The units of each dataset are:\n\n- Solar radiation: watts per meter^2\n- Temperature: degrees Fahrenheit\n- Humidity: percent\n- Barometric pressure: Hg\n- Wind direction: degrees\n- Wind speed: miles per hour\n- Sunrise/sunset: Hawaii time\n\nLink: https://www.kaggle.com/datasets/dronio/SolarEnergy\n",
+      "demoUrl": "",
+      "techStack": [
+        "Jupyter Notebook"
+      ],
+      "category": "ai-ml",
+      "slug": "Solar-Irradiance-Prediction",
+      "updatedAt": "2023-05-09T01:45:45Z"
+    }
+  ]
+}
