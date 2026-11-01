@@ -10,3 +10,4 @@ pnpm-debug.log*
 serviceAccountKey.json
 tools/
 tools/Profile.pdf
+public/resume.*
