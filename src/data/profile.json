@@ -1,8 +1,8 @@
 {
-  "name": "Gopal Kholade",
-  "headline": "Data & Machine Learning Analyst | Building Scalable ML Workflows & Data Pipelines",
-  "bio": "Data Analyst with strong experience in data transformation, pipeline automation, and exploratory data analysis, transitioning applied skills into Machine Learning and Applied AI. Proficient in Python, SQL, PySpark, and BI visualization to convert complex multi-source datasets into clean, actionable data products. Hands-on experience building automated data ingestion workflows, predictive modeling pipelines, and exploring GenAI architectures (PEFT, RAG, and local LLM deployment).",
-  "location": "Pune, Maharashtra, India",
+  "name": "Contact",
+  "headline": "Pune, Maharashtra",
+  "bio": "Data Analyst with strong experience in data transformation, pipeline automation, and exploratory data analysis, transitioning applied skills into Machine Learning and Applied AI. Proficient in Python, SQL, PySpark, and BI visualization to convert complex multi-source datasets into clean, actionable data products. Hands-on experience building automated data ingestion workflows, predictive modeling pipelines, and exploring GenAI architectures (PEFT, RAG, and local LLM deployment). Focused on engineering scalable, end-to-end data and machine learning solutions that automate operational processes and drive data-informed decisions.",
+  "location": "8830081568 (Mobile)",
   "email": "kholadegopal12@gmail.com",
   "linkedinUrl": "https://www.linkedin.com/in/gopalkholade",
   "githubUrl": "https://github.com/GopalKholade",
@@ -38,11 +38,23 @@
     "Business Analyst and Project Manager Collaboration",
     "Learning Data Science: Understanding the Basics",
     "Introduction to Career Skills in Data Analytics",
-    "SQL"
+    "SQL",
+    "Project Management Foundations:",
+    "Requirements",
+    "Business Analyst and Project",
+    "Manager Collaboration",
+    "Learning Data Science:",
+    "Understanding the Basics",
+    "Introduction to Career Skills in Data",
+    "Analytics",
+    "Gopal Kholade",
+    "Data & Machine Learning Analyst | Python, PySpark, Scikit-Learn,",
+    "SQL | Building Scalable ML Workflows & Data Pipelines",
+    "Pune District, Maharashtra, India"
   ],
   "education": {
     "institution": "Sant Gadge Baba Amravati University, Amravati",
-    "degree": "Bachelor of Engineering - BE, Information Technology",
-    "duration": "August 2018 - May 2022"
+    "degree": "Bachelor of Engineering - BE, Information Technology · (August 2018 - May",
+    "duration": "2022)"
   }
 }

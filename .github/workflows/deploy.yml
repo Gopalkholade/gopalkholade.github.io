@@ -48,6 +48,9 @@ jobs:
           GITHUB_USERNAME: "GopalKholade"
         run: node scripts/sync-github.mjs
 
+      - name: Generate Dynamic Resume & Aggregated Skills
+        run: node scripts/generate-resume.mjs
+
       - name: Build Astro static site
         env:
           SITE_URL: "https://gopalkholade.github.io"

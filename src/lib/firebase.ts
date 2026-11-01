@@ -68,12 +68,17 @@ if (app) {
 export async function getProjects(category?: string): Promise<Project[]> {
   if (!db) return [];
   try {
-    let query = db.collection('projects').where('published', '==', true);
+    let query = db.collection('projects').where('show', '==', 1);
+
     if (category) {
       query = query.where('category', '==', category);
     }
-    const querySnap = await query.orderBy('order', 'asc').get();
-    return querySnap.docs.map(doc => doc.data() as Project);
+
+    const querySnap = await query.get();
+    const projects = querySnap.docs.map(doc => doc.data() as Project);
+    
+    // Sort in memory so Firestore doesn't demand composite index creation
+    return projects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
   } catch (err) {
     console.warn('⚠️ Failed to fetch projects from Firestore. Returning empty list.', err);
     return [];
