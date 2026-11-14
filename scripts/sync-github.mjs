@@ -13,10 +13,27 @@ function initFirebase() {
     return getFirestore();
   }
 
-  // 2. Support local file fallback
+  // 2. Support separate GitHub Actions secrets
+  const projectId = process.env.FIREBASE_PROJECT_ID?.trim();
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL?.trim();
+  let privateKey = process.env.FIREBASE_PRIVATE_KEY?.trim();
+  if (projectId && clientEmail && privateKey) {
+    if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
+      privateKey = privateKey.slice(1, -1);
+    }
+    privateKey = privateKey.replace(/\\n/g, '\n');
+    initializeApp({
+      credential: cert({ projectId, clientEmail, privateKey }),
+    });
+    return getFirestore();
+  }
+
+  // 3. Support local file fallback
   const keyPath = path.resolve(process.cwd(), 'serviceAccountKey.json');
   if (!fs.existsSync(keyPath)) {
-    throw new Error(`File not found: ${keyPath}`);
+    throw new Error(
+      'Firebase credentials not found. Set FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, and FIREBASE_PRIVATE_KEY, or provide FIREBASE_SERVICE_ACCOUNT or serviceAccountKey.json.'
+    );
   }
 
   const serviceAccount = JSON.parse(fs.readFileSync(keyPath, 'utf8'));

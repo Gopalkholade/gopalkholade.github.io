@@ -39,8 +39,9 @@ All documents are read during static generation. Project `slug` values should be
 
 The scheduled workflow reads public repositories for the repository owner, then writes them to Firestore as project documents with `source: "github"`. Add the following repository Actions secrets:
 
-- `FIREBASE_SERVICE_ACCOUNT_JSON`
 - `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
 
 The workflow uses GitHub's built-in `GITHUB_TOKEN` to read public repositories. You can run it manually from the Actions tab. The sync removes stale documents created by previous GitHub syncs but leaves manually managed projects untouched.
 
