@@ -43,6 +43,8 @@ The scheduled workflow reads public repositories for the repository owner, then 
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
 
+Set `FIREBASE_PRIVATE_KEY` to the service account's PEM `private_key` value, including the `BEGIN` and `END` lines. If entered as a single line, encode line breaks as `\n`.
+
 The workflow uses GitHub's built-in `GITHUB_TOKEN` to read public repositories. You can run it manually from the Actions tab. The sync removes stale documents created by previous GitHub syncs but leaves manually managed projects untouched.
 
 ## GitHub Pages deployment

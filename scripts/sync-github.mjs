@@ -19,9 +19,26 @@ function initFirebase() {
   let privateKey = process.env.FIREBASE_PRIVATE_KEY?.trim();
   if (projectId && clientEmail && privateKey) {
     if (privateKey.startsWith('"') && privateKey.endsWith('"')) {
-      privateKey = privateKey.slice(1, -1);
+      try {
+        privateKey = JSON.parse(privateKey);
+      } catch {
+        privateKey = privateKey.slice(1, -1);
+      }
     }
-    privateKey = privateKey.replace(/\\n/g, '\n');
+    privateKey = privateKey
+      .replace(/\r\n/g, '\n')
+      .replace(/\\+r?\\+n/g, '\n')
+      .trim();
+
+    if (
+      !/^-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(privateKey) ||
+      !/-----END [A-Z ]*PRIVATE KEY-----\s*$/.test(privateKey)
+    ) {
+      throw new Error(
+        'FIREBASE_PRIVATE_KEY must be the PEM private_key value from the Firebase service-account JSON, including its BEGIN and END lines.'
+      );
+    }
+
     initializeApp({
       credential: cert({ projectId, clientEmail, privateKey }),
     });
