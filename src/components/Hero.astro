@@ -7,29 +7,171 @@ interface Props {
 
 const { profile } = Astro.props;
 ---
-<section class="mb-16">
-  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-stroke bg-surface text-accent font-mono text-xs mb-6">
-    <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
-    Open to Technical Opportunities
+<section class="mb-20 pt-4">
+  <!-- System Status Strip -->
+  <div class="flex flex-wrap items-center gap-3 mb-6 text-xs font-mono">
+    <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full border border-stroke bg-panel text-text-muted">
+      <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+      <span>Pune, Maharashtra, India</span>
+      <span class="text-text-dim">·</span>
+      <span class="text-accent">Available for select roles</span>
+    </div>
+
+    <div class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-stroke bg-panel text-text-dim">
+      <span>role:</span>
+      <span class="text-text-main">Data Research Analyst</span>
+    </div>
   </div>
-  <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-text-main mb-4">
-    {profile.name}
-  </h1>
-  <p class="text-lg md:text-xl font-mono text-accent mb-6">
-    {profile.headline}
-  </p>
-  <p class="text-text-dim max-w-2xl text-base leading-relaxed mb-8">
-    {profile.bio}
-  </p>
-  <div class="flex flex-wrap items-center gap-4">
-    <a href="#projects" class="px-5 py-2.5 rounded bg-accent text-canvas font-semibold text-sm hover:opacity-90 transition-opacity">
-      View Case Studies
-    </a>
-    <a href={profile.githubUrl} target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded border border-stroke bg-surface hover:border-stroke-hover text-sm font-mono text-text-main transition-colors">
-      GitHub Profile ↗
-    </a>
-    <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded border border-stroke bg-surface hover:border-stroke-hover text-sm font-mono text-text-main transition-colors">
-      LinkedIn ↗
-    </a>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+    <!-- Left Column: Human narrative -->
+    <div class="lg:col-span-7">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-text-main mb-3">
+        {profile.name}
+      </h1>
+      
+      <p class="text-base sm:text-lg font-mono text-accent-cyan mb-5">
+        Data Analyst &amp; Applied ML Engineer
+      </p>
+
+      <div class="space-y-3 text-text-muted text-sm sm:text-base leading-relaxed mb-8">
+        <p>
+          I work at the intersection of data engineering, exploratory analysis, and applied machine learning. At <span class="text-text-main font-medium">On Direct Marketing Services</span> in Pune, I engineer automated ETL pipelines, clean unstructured inputs, and build analytical dashboards with Python, SQL, and PySpark.
+        </p>
+        <p>
+          Beyond production pipelines, I experiment with applied AI architectures — specifically parameter-efficient fine-tuning (<span class="text-text-main font-mono text-xs px-1.5 py-0.5 rounded bg-surface border border-stroke">PEFT / LoRA</span>), local model quantization, and retrieval-augmented generation (<span class="text-text-main font-mono text-xs px-1.5 py-0.5 rounded bg-surface border border-stroke">RAG</span>).
+        </p>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-wrap items-center gap-3">
+        <a 
+          href="#projects" 
+          class="px-4 py-2 rounded-md bg-accent text-canvas font-medium text-xs font-mono hover:bg-accent/90 transition-all shadow-glow-accent inline-flex items-center gap-1.5"
+        >
+          <span>View Engineering Projects</span>
+          <span>↓</span>
+        </a>
+
+        <a 
+          href={profile.githubUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-4 py-2 rounded-md border border-stroke bg-panel hover:bg-surface hover:border-stroke-hover text-xs font-mono text-text-main transition-all inline-flex items-center gap-1.5"
+        >
+          <span>GitHub</span>
+          <span class="text-text-dim">↗</span>
+        </a>
+
+        <a 
+          href={profile.linkedinUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-4 py-2 rounded-md border border-stroke bg-panel hover:bg-surface hover:border-stroke-hover text-xs font-mono text-text-main transition-all inline-flex items-center gap-1.5"
+        >
+          <span>LinkedIn</span>
+          <span class="text-text-dim">↗</span>
+        </a>
+
+        <button 
+          id="hero-copy-email"
+          class="px-4 py-2 rounded-md border border-stroke bg-panel hover:bg-surface hover:border-stroke-hover text-xs font-mono text-text-muted hover:text-text-main transition-all inline-flex items-center gap-1.5 cursor-pointer"
+        >
+          <span>kholadegopal12@gmail.com</span>
+          <span class="text-[10px] text-accent">📋</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Column: Developer Workstation Spec Card -->
+    <div class="lg:col-span-5">
+      <div class="rounded-lg border border-stroke bg-panel overflow-hidden shadow-card-subtle">
+        <!-- Terminal Titlebar -->
+        <div class="px-4 py-2.5 bg-surface border-b border-stroke flex items-center justify-between font-mono text-[11px] text-text-dim">
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-green-500/70 inline-block"></span>
+            <span class="ml-2 text-text-muted">system_specs.json</span>
+          </div>
+          <span class="text-[10px] text-accent-cyan">node v20 · x86_64</span>
+        </div>
+
+        <!-- Terminal body -->
+        <div class="p-4 font-mono text-xs leading-relaxed text-text-muted space-y-2">
+          <div>
+            <span class="text-accent">&gt;</span> <span class="text-text-main">gk --diagnostics</span>
+          </div>
+          <div class="text-text-dim pt-1 border-t border-stroke/50 space-y-1.5">
+            <div class="flex justify-between">
+              <span class="text-text-dim">Current Role</span>
+              <span class="text-text-main text-right">Data Research Analyst</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">Organization</span>
+              <span class="text-text-main text-right">On Direct Marketing Services</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">Location</span>
+              <span class="text-text-main text-right">Pune, MH, India (IST)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">Primary Drivers</span>
+              <span class="text-accent-cyan text-right">Python · SQL · PySpark</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">Applied ML</span>
+              <span class="text-accent text-right">Scikit-Learn · PEFT/LoRA</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">BI &amp; Viz</span>
+              <span class="text-text-main text-right">Tableau · Matplotlib</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-text-dim">Education</span>
+              <span class="text-text-main text-right">B.E. Info Tech (2018–2022)</span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-stroke/50 flex items-center justify-between text-[11px]">
+            <span class="text-text-dim">Architecture:</span>
+            <span class="text-accent">100% Static SSG + Astro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Engineering Impact Metrics Strip -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-stroke">
+    <div class="p-4 rounded-md border border-stroke bg-panel/50">
+      <div class="text-xl sm:text-2xl font-mono font-bold text-text-main">~40%</div>
+      <div class="text-xs font-mono text-text-dim mt-1">Manual ETL Reduction</div>
+    </div>
+    <div class="p-4 rounded-md border border-stroke bg-panel/50">
+      <div class="text-xl sm:text-2xl font-mono font-bold text-accent-cyan">Multi-Source</div>
+      <div class="text-xs font-mono text-text-dim mt-1">Pipeline Reconciliation</div>
+    </div>
+    <div class="p-4 rounded-md border border-stroke bg-panel/50">
+      <div class="text-xl sm:text-2xl font-mono font-bold text-accent">LoRA / PEFT</div>
+      <div class="text-xs font-mono text-text-dim mt-1">Quantized LLM Tuning</div>
+    </div>
+    <div class="p-4 rounded-md border border-stroke bg-panel/50">
+      <div class="text-xl sm:text-2xl font-mono font-bold text-text-main">99.8%</div>
+      <div class="text-xs font-mono text-text-dim mt-1">Schema Reliability</div>
+    </div>
   </div>
 </section>
+
+<script>
+  const heroBtn = document.getElementById('hero-copy-email');
+  if (heroBtn) {
+    heroBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('kholadegopal12@gmail.com').then(() => {
+        if ((window as any).showToast) {
+          (window as any).showToast('Copied kholadegopal12@gmail.com');
+        }
+      });
+    });
+  }
+</script>

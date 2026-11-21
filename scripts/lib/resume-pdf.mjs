@@ -183,6 +183,15 @@ export async function generateResumePdf({ profile, experiences, categorizedSkill
         after: 0.15,
       });
     }
+    const certDriveUrl = process.env.CERTIFICATES_DRIVE_URL;
+    if (certDriveUrl) {
+      addBodyText('Verified Certificate Archive (Google Drive): ' + certDriveUrl, {
+        fontSize: 8,
+        color: COLORS.accent,
+        link: certDriveUrl,
+        after: 0.25,
+      });
+    }
   }
 
   const pageRange = doc.bufferedPageRange();

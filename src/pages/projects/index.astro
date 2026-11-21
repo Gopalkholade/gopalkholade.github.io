@@ -4,19 +4,52 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getProjects } from '../../lib/firebase';
 
 const projects = await getProjects();
+const dataAnalyticsCount = projects.filter(p => p.category === 'data-analytics').length;
+const aiMlCount = projects.filter(p => p.category === 'ai-ml').length;
 ---
-<Layout title="All Technical Projects | Portfolio">
+<Layout 
+  title="All Technical Projects & Case Studies — Gopal Kholade" 
+  description="Explore production data pipelines, automated ETL workflows, predictive modeling pipelines, and applied LLM fine-tuning projects."
+>
   <div class="mb-10">
-    <h1 class="text-3xl font-bold text-text-main mb-2">Technical Projects &amp; Case Studies</h1>
-    <p class="text-sm font-mono text-text-dim">Automated pipeline sync from GitHub repositories</p>
+    <div class="flex items-center gap-2 font-mono text-xs text-text-dim mb-3">
+      <a href="/" class="hover:text-text-main transition-colors">home</a>
+      <span>/</span>
+      <span class="text-accent-cyan">projects</span>
+      <span class="text-text-dim hidden sm:inline">(all {projects.length} indexed)</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl font-bold text-text-main tracking-tight mb-2">
+      Technical Projects &amp; Case Studies
+    </h1>
+    <p class="text-sm font-mono text-text-muted">
+      Production ETL architectures, statistical modeling, and applied AI systems.
+    </p>
   </div>
 
-  <div class="flex gap-2 mb-8 border-b border-stroke pb-4 font-mono text-xs" id="filter-tabs">
-    <button class="px-3 py-1.5 rounded bg-surface border border-stroke text-accent filter-btn active" data-filter="all">All ({projects.length})</button>
-    <button class="px-3 py-1.5 rounded border border-transparent text-text-dim hover:text-text-main filter-btn" data-filter="data-analytics">Data Analytics</button>
-    <button class="px-3 py-1.5 rounded border border-transparent text-text-dim hover:text-text-main filter-btn" data-filter="ai-ml">AI &amp; ML</button>
+  <!-- Filter tabs -->
+  <div class="flex flex-wrap gap-2 mb-8 border-b border-stroke pb-4 font-mono text-xs" id="filter-tabs">
+    <button 
+      class="px-3 py-1.5 rounded bg-surface border border-stroke text-accent filter-btn active transition-all cursor-pointer" 
+      data-filter="all"
+    >
+      All Projects ({projects.length})
+    </button>
+    <button 
+      class="px-3 py-1.5 rounded border border-transparent text-text-dim hover:text-text-main filter-btn transition-all cursor-pointer" 
+      data-filter="data-analytics"
+    >
+      Data Analytics &amp; Pipelines ({dataAnalyticsCount})
+    </button>
+    <button 
+      class="px-3 py-1.5 rounded border border-transparent text-text-dim hover:text-text-main filter-btn transition-all cursor-pointer" 
+      data-filter="ai-ml"
+    >
+      Applied AI &amp; ML ({aiMlCount})
+    </button>
   </div>
 
+  <!-- Projects Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
     {projects.map(project => (
       <div class="project-wrapper" data-category={project.category}>

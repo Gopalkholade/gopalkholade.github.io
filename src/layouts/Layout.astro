@@ -7,7 +7,10 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Data Analyst bridging into Applied AI & ML Systems.' } = Astro.props;
+const { 
+  title, 
+  description = 'Data Analyst & Applied ML Engineer in Pune, India. Building automated ETL pipelines, predictive models, and local LLM workflows with Python, SQL, and PySpark.' 
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="en" class="dark scroll-smooth">
@@ -17,15 +20,63 @@ const { title, description = 'Data Analyst bridging into Applied AI & ML Systems
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" />
-    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
-    <link href="[https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap)" rel="stylesheet" />
+    <meta name="author" content="Gopal Kholade" />
+    <meta name="theme-color" content="#090d12" />
+    
+    <!-- OpenGraph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
-  <body class="bg-canvas text-text-main font-sans antialiased selection:bg-accent selection:text-canvas min-h-screen flex flex-col border-stroke">
-    <Navbar/>
-    <main class="flex-grow max-w-5xl w-full mx-auto px-6 py-12 md:py-16">
+  <body class="bg-canvas text-text-main font-sans antialiased selection:bg-accent/20 selection:text-accent min-h-screen flex flex-col relative">
+    <!-- Top accent border line -->
+    <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-accent/40 to-transparent"></div>
+
+    <Navbar />
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-5 sm:px-8 py-10 md:py-16">
       <slot />
     </main>
-    <Footer/>
+
+    <Footer />
+
+    <!-- Developer Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-200 font-mono text-xs bg-panel border border-stroke text-text-main px-4 py-2.5 rounded-md shadow-lg flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-accent"></span>
+      <span id="toast-message">Copied to clipboard</span>
+    </div>
+
+    <script>
+      // Global shortcut handler
+      (window as any).showToast = function(msg: string) {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toast-message');
+        if (toast && toastMsg) {
+          toastMsg.textContent = msg;
+          toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+          toast.classList.add('translate-y-0', 'opacity-100');
+          setTimeout(() => {
+            toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+            toast.classList.remove('translate-y-0', 'opacity-100');
+          }, 2400);
+        }
+      };
+
+      document.addEventListener('keydown', (e) => {
+        // Don't trigger if user is typing in an input
+        if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
+
+        if (e.key === 'c' || e.key === 'C') {
+          navigator.clipboard.writeText('kholadegopal12@gmail.com').then(() => {
+            (window as any).showToast('Copied kholadegopal12@gmail.com to clipboard');
+          });
+        }
+      });
+    </script>
   </body>
 </html>

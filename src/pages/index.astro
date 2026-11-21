@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import SkillsMatrix from '../components/SkillsMatrix.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
+import Certifications from '../components/Certifications.astro';
 import { getProjects } from '../lib/firebase';
 import profileData from '../data/profile.json';
 import experienceData from '../data/experience.json';
@@ -14,23 +15,46 @@ const experiences = experienceData as Experience[];
 const allProjects = await getProjects();
 const featuredProjects = allProjects.filter(p => p.featured).slice(0, 4);
 ---
-<Layout title={`${profile.name} | ${profile.headline}`}>
+<Layout title={`${profile.name} — ${profile.headline}`}>
+  <!-- Hero Section with human voice & developer HUD -->
   <Hero profile={profile} />
   
-  <section id="projects" class="mb-16">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xs font-mono tracking-widest text-text-dim uppercase flex items-center gap-2">
-        <span class="text-accent">&gt;</span> Featured Case Studies
-      </h2>
-      <a href="/projects" class="text-xs font-mono text-accent hover:underline">
-        All Projects ({allProjects.length}) →
+  <!-- Featured Projects -->
+  <section id="projects" class="mb-20">
+    <div class="flex items-center justify-between mb-8 pb-3 border-b border-stroke">
+      <div class="flex items-center gap-2">
+        <span class="font-mono text-xs text-accent-cyan">01.</span>
+        <h2 class="text-xs font-mono tracking-widest text-text-dim uppercase">
+          Featured Engineering Case Studies
+        </h2>
+      </div>
+      <a 
+        href="/projects" 
+        class="text-xs font-mono text-accent-cyan hover:underline inline-flex items-center gap-1"
+      >
+        <span>All Repositories ({allProjects.length})</span>
+        <span>→</span>
       </a>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {featuredProjects.map(project => <ProjectCard project={project} />)}
+      {featuredProjects.map(project => (
+        <ProjectCard project={project} />
+      ))}
     </div>
   </section>
 
+  <!-- Technical Competencies & Stack -->
   <SkillsMatrix skills={profile.skills} />
-  <ExperienceTimeline experiences={experiences} />
+
+  <!-- Experience & Education Timeline -->
+  <ExperienceTimeline 
+    experiences={experiences} 
+    education={profile.education}
+  />
+
+  <!-- Verified Certifications -->
+  {profile.certifications && profile.certifications.length > 0 && (
+    <Certifications certifications={profile.certifications} />
+  )}
 </Layout>

@@ -3,6 +3,9 @@ import { getFirestore } from 'firebase-admin/firestore';
 import fs from 'node:fs';
 import path from 'node:path';
 import { generateResumePdf } from './lib/resume-pdf.mjs';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function initFirebase() {
   if (getApps().length > 0) return getFirestore();
@@ -168,6 +171,10 @@ function generateMarkdownResume(profile, experiences, categorizedSkills, project
     profile.certifications.forEach(cert => {
       md += `- ${cert}\n`;
     });
+    const certDriveUrl = process.env.CERTIFICATES_DRIVE_URL;
+    if (certDriveUrl) {
+      md += `\n*Verified Credentials Archive:* [Google Drive Document](${certDriveUrl})\n`;
+    }
   }
 
   return md;
@@ -193,20 +200,35 @@ async function buildResume() {
   const profile = JSON.parse(fs.readFileSync(profilePath, 'utf8'));
   const experiences = JSON.parse(fs.readFileSync(expPath, 'utf8'));
 
-  // 2. Query projects from Firestore
-  const db = initFirebase();
-  const snapshot = await db.collection('projects').where('show', '==', 1).get();
-
-  const projects = [];
+  // 2. Query projects from Firestore or local fallback
+  let projects = [];
   const rawTopics = new Set();
 
-  snapshot.forEach(doc => {
-    const data = doc.data();
-    projects.push(data);
-    if (Array.isArray(data.topics)) {
-      data.topics.forEach(t => rawTopics.add(t));
+  try {
+    const db = initFirebase();
+    const snapshot = await db.collection('projects').where('show', '==', 1).get();
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      projects.push(data);
+      if (Array.isArray(data.topics)) {
+        data.topics.forEach(t => rawTopics.add(t));
+      }
+    });
+  } catch (err) {
+    console.warn('⚠️ Firestore unavailable for resume generation, falling back to src/data/projects.json:', err.message);
+  }
+
+  if (projects.length === 0) {
+    const localProjectsPath = path.join(dataDir, 'projects.json');
+    if (fs.existsSync(localProjectsPath)) {
+      projects = JSON.parse(fs.readFileSync(localProjectsPath, 'utf8'));
+      projects.forEach(p => {
+        if (Array.isArray(p.topics)) {
+          p.topics.forEach(t => rawTopics.add(t));
+        }
+      });
     }
-  });
+  }
 
   console.log(`Harvested ${rawTopics.size} raw topic tags from ${projects.length} featured GitHub projects.`);
 

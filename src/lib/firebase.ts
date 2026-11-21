@@ -1,6 +1,7 @@
 import { initializeApp, getApps, cert, type App } from 'firebase-admin/app';
 import { getFirestore, type Firestore } from 'firebase-admin/firestore';
 import type { Project } from '../types';
+import localProjectsData from '../data/projects.json';
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
@@ -37,7 +38,7 @@ function getFirebaseApp(): App | null {
     }
   }
 
-  // 3. Fallback: discrete env vars
+  // 3. Discrete env vars
   const projectId = process.env.FIREBASE_PROJECT_ID?.trim();
   const clientEmail = process.env.FIREBASE_CLIENT_EMAIL?.trim();
   let privateKey = process.env.FIREBASE_PRIVATE_KEY?.trim();
@@ -62,11 +63,24 @@ function getFirebaseApp(): App | null {
 
 const app = getFirebaseApp();
 if (app) {
-  db = getFirestore(app);
+  try {
+    db = getFirestore(app);
+  } catch {
+    db = null;
+  }
+}
+
+const fallbackProjects: Project[] = (localProjectsData as Project[]).filter(p => p.published !== false);
+
+function filterFallback(category?: string): Project[] {
+  return category ? fallbackProjects.filter(p => p.category === category) : fallbackProjects;
 }
 
 export async function getProjects(category?: string): Promise<Project[]> {
-  if (!db) return [];
+  if (!db) {
+    return filterFallback(category);
+  }
+
   try {
     let query = db.collection('projects').where('show', '==', 1);
 
@@ -77,21 +91,28 @@ export async function getProjects(category?: string): Promise<Project[]> {
     const querySnap = await query.get();
     const projects = querySnap.docs.map(doc => doc.data() as Project);
     
-    // Sort in memory so Firestore doesn't demand composite index creation
-    return projects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    if (projects.length > 0) {
+      return projects.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    }
+    
+    return filterFallback(category);
   } catch (err) {
-    console.warn('⚠️ Failed to fetch projects from Firestore. Returning empty list.', err);
-    return [];
+    console.warn('⚠️ Failed to fetch projects from Firestore. Using static fallback data.', err);
+    return filterFallback(category);
   }
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
-  if (!db) return null;
-  try {
-    const docSnap = await db.collection('projects').doc(slug).get();
-    if (!docSnap.exists) return null;
-    return docSnap.data() as Project;
-  } catch {
-    return null;
+  if (db) {
+    try {
+      const docSnap = await db.collection('projects').doc(slug).get();
+      if (docSnap.exists) {
+        return docSnap.data() as Project;
+      }
+    } catch {
+      // Continue to local fallback
+    }
   }
+  
+  return fallbackProjects.find(p => p.slug === slug) || null;
 }

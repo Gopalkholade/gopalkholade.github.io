@@ -49,12 +49,15 @@ jobs:
         run: node scripts/sync-github.mjs
 
       - name: Generate Dynamic Resume & Aggregated Skills
+        env:
+          CERTIFICATES_DRIVE_URL: ${{ secrets.CERTIFICATES_DRIVE_URL }}
         run: node scripts/generate-resume.mjs
 
       - name: Build Astro static site
         env:
           SITE_URL: "https://gopalkholade.github.io"
           BASE_PATH: "/"
+          CERTIFICATES_DRIVE_URL: ${{ secrets.CERTIFICATES_DRIVE_URL }}
         run: npm run build
 
       - name: Upload GitHub Pages artifact

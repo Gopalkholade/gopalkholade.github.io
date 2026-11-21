@@ -2,6 +2,9 @@ import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import fs from 'node:fs';
 import path from 'node:path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function initFirebase() {
   if (getApps().length > 0) return getFirestore();
@@ -93,6 +96,8 @@ async function syncRepos() {
   const repos = await response.json();
   console.log(`Found ${repos.length} total repositories.`);
 
+  const featuredForLocal = [];
+
   for (const repo of repos) {
     if (repo.fork) continue; // Skip forked repositories
 
@@ -137,6 +142,23 @@ async function syncRepos() {
 
     await db.collection('projects').doc(repo.name).set(projectPayload, { merge: true });
     console.log(`Synced: ${repo.name} | Category: ${category} | show: ${shouldShow}`);
+
+    if (shouldShow === 1) {
+      featuredForLocal.push({
+        ...projectPayload,
+        featured: true,
+        order: featuredForLocal.length + 1,
+      });
+    }
+  }
+
+  if (featuredForLocal.length > 0) {
+    const dataDir = path.resolve(process.cwd(), 'src', 'data');
+    const localJson = path.join(dataDir, 'projects.json');
+    if (fs.existsSync(dataDir)) {
+      fs.writeFileSync(localJson, JSON.stringify(featuredForLocal, null, 2), 'utf8');
+      console.log(`Updated local static fallback: ${localJson} (${featuredForLocal.length} projects).`);
+    }
   }
 
   console.log('Sync completed successfully.');

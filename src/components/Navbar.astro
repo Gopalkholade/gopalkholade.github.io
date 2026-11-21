@@ -1,17 +1,61 @@
 ---
 ---
-<header class="sticky top-0 z-50 backdrop-blur-md bg-canvas/80 border-b border-stroke">
-  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-mono text-sm font-semibold tracking-wider text-text-main hover:text-accent transition-colors">
-      &gt; /home<span class="text-accent animate-pulse">_</span>
+<header class="sticky top-0 z-40 backdrop-blur-md bg-canvas/85 border-b border-stroke transition-colors">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8 h-14 flex items-center justify-between">
+    <!-- Brand / Identity -->
+    <a href="/" class="group flex items-center gap-2.5 text-xs font-mono font-medium tracking-tight text-text-main hover:text-white transition-colors">
+      <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
+      <span class="text-text-muted group-hover:text-text-main">gk@workstation</span>
+      <span class="text-text-dim">:</span>
+      <span class="text-accent-cyan">~</span>
+      <span class="text-text-dim hidden sm:inline">(main)</span>
     </a>
-    <nav class="flex items-center gap-6 text-sm text-text-dim">
-      <a href="/#projects" class="hover:text-text-main transition-colors">Featured</a>
-      <a href="/projects" class="hover:text-text-main transition-colors">All Projects</a>
-      <a href="/#experience" class="hover:text-text-main transition-colors">Experience</a>
-      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="text-accent hover:underline font-mono text-xs border border-accent/30 px-2.5 py-1 rounded bg-accent-dim">
-        Resume.pdf
+
+    <!-- Navigation links -->
+    <nav class="flex items-center gap-4 sm:gap-6 text-xs font-mono text-text-muted">
+      <a href="/#projects" class="hover:text-text-main transition-colors">
+        projects
+      </a>
+      <a href="/#experience" class="hover:text-text-main transition-colors">
+        experience
+      </a>
+      <a href="/#skills" class="hover:text-text-main transition-colors hidden sm:inline">
+        stack
+      </a>
+      
+      <!-- Quick copy email button -->
+      <button 
+        id="nav-copy-email-btn"
+        class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-stroke bg-surface hover:bg-surface-hover hover:border-stroke-hover text-text-muted hover:text-text-main transition-all cursor-pointer"
+        title="Copy email to clipboard (Press 'C')"
+      >
+        <span>copy email</span>
+        <kbd class="text-[10px] px-1 py-0 bg-code-bg border-stroke">c</kbd>
+      </button>
+
+      <!-- Resume Button -->
+      <a 
+        href="/resume.pdf" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded border border-accent/30 bg-accent-dim text-accent hover:bg-accent/20 transition-all font-semibold"
+      >
+        <span>resume</span>
+        <span class="text-[10px] opacity-75">↗</span>
       </a>
     </nav>
   </div>
 </header>
+
+<script>
+  const copyBtn = document.getElementById('nav-copy-email-btn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('kholadegopal12@gmail.com').then(() => {
+        if ((window as any).showToast) {
+          (window as any).showToast('Copied kholadegopal12@gmail.com');
+        }
+      });
+    });
+  }
+</script>

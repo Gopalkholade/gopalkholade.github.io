@@ -3,10 +3,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 
-const require = createRequire(import.meta.url);
+const cjsRequire = createRequire(import.meta.url);
 
 async function extractPdfText(buffer) {
-  const mod = require('pdf-parse');
+  const mod = cjsRequire('pdf-parse');
 
   // Check if v2 class or named export exists
   const ParserClass = mod.PDFParse || (typeof mod === 'function' && /^class\s/.test(Function.prototype.toString.call(mod)) ? mod : null);

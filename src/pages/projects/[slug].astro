@@ -18,37 +18,100 @@ interface Props {
 
 const { project } = Astro.props;
 const htmlContent = renderMarkdown(project.readmeMarkdown);
+const categoryLabel = project.category === 'ai-ml' ? 'Applied AI & ML' : 'Data Analytics & Pipelines';
 ---
-<Layout title={`${project.title} | Case Study`} description={project.description}>
+<Layout title={`${project.title} — Engineering Case Study`} description={project.description}>
   <article class="max-w-3xl mx-auto">
-    <a href="/projects" class="font-mono text-xs text-text-dim hover:text-accent mb-8 inline-block">
-      ← Back to all projects
-    </a>
+    <!-- Breadcrumb -->
+    <div class="mb-8 font-mono text-xs text-text-dim flex items-center justify-between">
+      <a href="/projects" class="hover:text-accent-cyan transition-colors inline-flex items-center gap-1.5">
+        <span>←</span>
+        <span>Back to all projects</span>
+      </a>
+
+      <span class="text-text-dim hidden sm:inline">
+        slug: {project.slug}
+      </span>
+    </div>
     
+    <!-- Header Block -->
     <header class="mb-10 pb-8 border-b border-stroke">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="font-mono text-xs px-2.5 py-0.5 rounded border border-stroke bg-surface text-accent">
-          {project.category === 'ai-ml' ? 'AI & Applied ML' : 'Data Analytics'}
+      <div class="flex flex-wrap items-center gap-3 mb-4 font-mono text-xs">
+        <span class={`px-2.5 py-0.5 rounded border ${
+          project.category === 'ai-ml' 
+            ? 'border-accent/30 text-accent bg-accent-dim' 
+            : 'border-accent-cyan/30 text-accent-cyan bg-accent-cyan-dim'
+        }`}>
+          {categoryLabel}
         </span>
-        <span class="font-mono text-xs text-text-dim">★ {project.stars} stars</span>
+        
+        {project.stars > 0 && (
+          <span class="text-text-dim flex items-center gap-1">
+            ★ {project.stars} stars on GitHub
+          </span>
+        )}
       </div>
-      <h1 class="text-3xl md:text-4xl font-bold text-text-main mb-4">{project.title}</h1>
-      <p class="text-base text-text-dim leading-relaxed mb-6">{project.description}</p>
+
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-text-main mb-4">
+        {project.title}
+      </h1>
+
+      <p class="text-base text-text-muted leading-relaxed mb-6 font-sans">
+        {project.description}
+      </p>
+
+      <!-- Tech stack pills -->
+      <div class="flex flex-wrap gap-1.5 mb-6">
+        {project.techStack.map(t => (
+          <span class="text-xs font-mono text-text-muted bg-surface border border-stroke px-2.5 py-1 rounded">
+            {t}
+          </span>
+        ))}
+      </div>
       
-      <div class="flex flex-wrap gap-3">
+      <!-- Repository & Live Action Buttons -->
+      <div class="flex flex-wrap items-center gap-3">
         {project.repoUrl && (
-          <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded bg-surface border border-stroke hover:border-stroke-hover text-sm font-mono text-text-main">
-            GitHub Repository ↗
+          <a 
+            href={project.repoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-4 py-2 rounded-md bg-surface border border-stroke hover:border-stroke-hover text-xs font-mono text-text-main transition-all inline-flex items-center gap-1.5"
+          >
+            <span>GitHub Repository</span>
+            <span class="text-text-dim">↗</span>
           </a>
         )}
         {project.demoUrl && (
-          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded bg-accent text-canvas font-semibold text-sm">
-            Live Deployment ↗
+          <a 
+            href={project.demoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-4 py-2 rounded-md bg-accent text-canvas font-semibold text-xs font-mono hover:bg-accent/90 transition-all inline-flex items-center gap-1.5"
+          >
+            <span>Live Deployment</span>
+            <span>↗</span>
           </a>
         )}
       </div>
     </header>
 
-    <div class="prose prose-invert max-w-none text-text-dim leading-relaxed font-sans prose-headings:font-bold prose-headings:text-text-main prose-a:text-accent prose-code:font-mono prose-code:text-accent prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-panel prose-pre:border prose-pre:border-stroke" set:html={htmlContent} />
+    <!-- Case Study Prose Content -->
+    <div 
+      class="prose-portfolio" 
+      set:html={htmlContent} 
+    />
+
+    <!-- Bottom Navigation -->
+    <div class="mt-14 pt-8 border-t border-stroke flex items-center justify-between font-mono text-xs">
+      <a href="/projects" class="text-accent-cyan hover:underline inline-flex items-center gap-1">
+        <span>←</span>
+        <span>Back to projects index</span>
+      </a>
+
+      <a href="#" class="text-text-dim hover:text-text-main transition-colors">
+        Back to top ↑
+      </a>
+    </div>
   </article>
 </Layout>

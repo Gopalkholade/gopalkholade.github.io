@@ -3,33 +3,97 @@ import type { Experience } from '../types';
 
 interface Props {
   experiences: Experience[];
+  education?: {
+    institution: string;
+    degree: string;
+    duration: string;
+  };
 }
 
-const { experiences } = Astro.props;
+const { experiences, education } = Astro.props;
 const sortedExperiences = [...experiences].sort((a, b) => a.order - b.order);
 ---
-<section id="experience" class="mb-16">
-  <h2 class="text-xs font-mono tracking-widest text-text-dim uppercase mb-6 flex items-center gap-2">
-    <span class="text-accent">&gt;</span> Professional Timeline &amp; Impact
-  </h2>
-  <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-stroke">
+<section id="experience" class="mb-20">
+  <!-- Section Header -->
+  <div class="flex items-center justify-between mb-8 pb-3 border-b border-stroke">
+    <div class="flex items-center gap-2">
+      <span class="font-mono text-xs text-accent-cyan">03.</span>
+      <h2 class="text-xs font-mono tracking-widest text-text-dim uppercase">
+        Professional Experience &amp; Impact
+      </h2>
+    </div>
+    <span class="text-[11px] font-mono text-text-dim hidden sm:inline">
+      git commit log: career
+    </span>
+  </div>
+
+  <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 sm:before:left-4 before:w-px before:bg-stroke">
     {sortedExperiences.map(exp => (
-      <div class="relative pl-8">
-        <div class="absolute left-2 top-1.5 w-2.5 h-2.5 rounded-full border-2 border-accent bg-canvas -translate-x-1/2"></div>
-        <div class="p-6 rounded-lg border border-stroke bg-panel">
-          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-            <h3 class="text-lg font-semibold text-text-main">{exp.role}</h3>
-            <span class="font-mono text-xs text-accent">
+      <div class="relative pl-8 sm:pl-10">
+        <!-- Git Tree Node Indicator -->
+        <div class="absolute left-3 sm:left-4 top-2 w-2.5 h-2.5 rounded-full border-2 border-accent bg-canvas -translate-x-1/2"></div>
+        
+        <div class="p-5 sm:p-6 rounded-lg border border-stroke bg-panel shadow-card-subtle">
+          <!-- Role & Timeframe Header -->
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-text-main flex items-center gap-2">
+                <span>{exp.role}</span>
+                {exp.isCurrent && (
+                  <span class="text-[10px] font-mono text-accent bg-accent-dim border border-accent/20 px-2 py-0.5 rounded-full">
+                    Current
+                  </span>
+                )}
+              </h3>
+              <p class="font-mono text-xs sm:text-sm text-accent-cyan mt-0.5">
+                {exp.company} <span class="text-text-dim">·</span> <span class="text-text-muted">{exp.location}</span>
+              </p>
+            </div>
+
+            <span class="font-mono text-xs text-text-dim px-2.5 py-1 rounded bg-surface border border-stroke">
               {exp.startDate} — {exp.isCurrent ? 'Present' : exp.endDate}
             </span>
           </div>
-          <p class="font-mono text-sm text-text-dim mb-4">{exp.company} • {exp.location}</p>
-          <ul class="space-y-2 mb-4 text-sm text-text-dim list-disc list-inside">
-            {exp.achievements.map(a => <li>{a}</li>)}
-          </ul>
-          <div class="flex flex-wrap gap-1.5">
+
+          <!-- Summary statement -->
+          {exp.summary && (
+            <p class="text-xs sm:text-sm text-text-muted mb-4 italic">
+              "{exp.summary}"
+            </p>
+          )}
+
+          <!-- Key Engineering Achievements with developer tags -->
+          <div class="space-y-2 mb-5 text-xs sm:text-sm text-text-muted">
+            {exp.achievements.map((a) => {
+              // Extract prefix tag if separated by colon
+              const colonIndex = a.indexOf(':');
+              const hasTag = colonIndex > 0 && colonIndex < 50;
+              const tag = hasTag ? a.slice(0, colonIndex) : null;
+              const rest = hasTag ? a.slice(colonIndex + 1) : a;
+
+              return (
+                <div class="flex items-start gap-2">
+                  <span class="text-accent font-mono text-xs mt-0.5 select-none">›</span>
+                  <div class="leading-relaxed">
+                    {tag ? (
+                      <>
+                        <span class="font-mono text-xs text-text-main font-semibold mr-1.5">[{tag}]</span>
+                        <span>{rest}</span>
+                      </>
+                    ) : (
+                      <span>{a}</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <!-- Technologies used on the job -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-3 border-t border-stroke/70">
+            <span class="text-[11px] font-mono text-text-dim mr-1">stack:</span>
             {exp.skills.map(s => (
-              <span class="text-xs font-mono text-text-dim bg-surface px-2 py-0.5 rounded border border-stroke">
+              <span class="text-[11px] font-mono text-text-muted bg-surface px-2 py-0.5 rounded border border-stroke/60">
                 {s}
               </span>
             ))}
@@ -37,5 +101,30 @@ const sortedExperiences = [...experiences].sort((a, b) => a.order - b.order);
         </div>
       </div>
     ))}
+
+    <!-- Education Entry in Timeline -->
+    {education && (
+      <div class="relative pl-8 sm:pl-10">
+        <div class="absolute left-3 sm:left-4 top-2 w-2.5 h-2.5 rounded-full border-2 border-accent-cyan bg-canvas -translate-x-1/2"></div>
+        <div class="p-5 sm:p-6 rounded-lg border border-stroke bg-panel/70 shadow-card-subtle">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-text-main">
+                {education.degree}
+              </h3>
+              <p class="font-mono text-xs sm:text-sm text-accent-cyan mt-0.5">
+                {education.institution}
+              </p>
+            </div>
+            <span class="font-mono text-xs text-text-dim px-2.5 py-1 rounded bg-surface border border-stroke">
+              {education.duration}
+            </span>
+          </div>
+          <p class="text-xs sm:text-sm text-text-muted leading-relaxed">
+            Core study in Database Management Systems (DBMS), Algorithms &amp; Data Structures, Object-Oriented Programming, and Operating Systems.
+          </p>
+        </div>
+      </div>
+    )}
   </div>
 </section>

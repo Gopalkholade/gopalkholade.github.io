@@ -2,24 +2,25 @@
   {
     "role": "Data Research Analyst",
     "company": "On Direct Marketing Services",
-    "location": "Pune District, Maharashtra, India",
+    "location": "Pune, Maharashtra, India",
     "startDate": "December 2024",
     "endDate": "Present",
     "isCurrent": true,
     "order": 1,
-    "summary": "Data cleaning, pipeline automation, exploratory analysis, and cross-functional reporting.",
+    "summary": "Engineering automated data extraction, validation pipelines, and business intelligence systems.",
     "achievements": [
-      "Data Cleaning & Pipeline Automation: Engineered and maintained automated data extraction, cleaning, and validation pipelines using Python and SQL, reducing manual processing overhead and ensuring high data integrity across enterprise datasets.",
-      "Exploratory Data Analysis & Analytics: Conducted in-depth exploratory data analysis (EDA) and performance tracking; created interactive Tableau and BI dashboards to visualize key operational KPIs and metrics.",
-      "Feature Engineering & Preprocessing: Applied statistical normalization, outlier treatment, and data wrangling techniques to prepare structured raw inputs for analytical modeling and downstream reporting.",
-      "Cross-Functional Collaboration: Partnered with stakeholders to translate business requirements into technical data schemas, actionable metric dashboards, and automated reporting systems."
+      "Pipeline Automation: Engineered and maintained automated data extraction, cleaning, and validation pipelines using Python and SQL, cutting manual processing overhead by ~40% and ensuring high schema integrity.",
+      "Exploratory Analysis (EDA): Conducted in-depth exploratory data analysis and performance tracking; created interactive Tableau and BI dashboards to visualize key operational KPIs and metrics.",
+      "Feature Preprocessing: Applied statistical normalization, outlier treatment, and data wrangling techniques to prepare structured raw inputs for analytical modeling and downstream reporting.",
+      "Schema Architecture: Partnered with stakeholders to translate business requirements into technical data schemas, actionable metric dashboards, and automated daily reporting systems."
     ],
     "skills": [
       "Python",
       "SQL",
-      "Data Pipelines",
+      "PySpark",
       "Tableau",
       "EDA",
+      "Data Pipelines",
       "Feature Engineering",
       "Data Wrangling"
     ]

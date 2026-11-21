@@ -6,45 +6,94 @@ interface Props {
 }
 
 const { project } = Astro.props;
+
+const categoryLabel = project.category === 'ai-ml' ? 'Applied AI & ML' : 'Data Analytics & Pipelines';
+const folderPath = project.category === 'ai-ml' ? `models/${project.slug}` : `pipelines/${project.slug}`;
 ---
-<article class="p-6 rounded-lg border border-stroke bg-panel hover:border-stroke-hover transition-all flex flex-col justify-between group">
+<article class="p-5 rounded-lg border border-stroke bg-panel hover:border-stroke-hover hover:bg-surface/30 transition-all flex flex-col justify-between group shadow-card-subtle">
   <div>
-    <div class="flex items-center justify-between mb-3">
-      <span class="font-mono text-xs px-2.5 py-0.5 rounded border border-stroke bg-surface text-text-dim">
-        {project.category === 'ai-ml' ? 'AI & Applied ML' : 'Data Analytics'}
-      </span>
-      {project.stars > 0 && (
-        <span class="font-mono text-xs text-text-dim flex items-center gap-1">
-          ★ {project.stars}
+    <!-- Top Metadata Bar -->
+    <div class="flex items-center justify-between mb-3 font-mono text-xs text-text-dim">
+      <div class="flex items-center gap-1.5">
+        <span class="text-accent-cyan opacity-80">📁</span>
+        <span class="text-[11px] text-text-muted">{folderPath}</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class={`text-[10px] uppercase tracking-wider px-2 py-0.5 rounded border ${
+          project.category === 'ai-ml' 
+            ? 'border-accent/30 text-accent bg-accent-dim' 
+            : 'border-accent-cyan/30 text-accent-cyan bg-accent-cyan-dim'
+        }`}>
+          {categoryLabel}
         </span>
-      )}
+
+        {project.stars > 0 && (
+          <span class="text-[11px] text-text-dim flex items-center gap-0.5">
+            ★ {project.stars}
+          </span>
+        )}
+      </div>
     </div>
-    <h3 class="text-xl font-semibold text-text-main group-hover:text-accent transition-colors mb-2">
-      <a href={`/projects/${project.slug}`}>
-        {project.title}
+
+    <!-- Project Title -->
+    <h3 class="text-lg font-semibold text-text-main group-hover:text-white transition-colors mb-2">
+      <a href={`/projects/${project.slug}`} class="focus:outline-none flex items-center gap-1.5">
+        <span>{project.title}</span>
+        <span class="text-xs font-mono text-text-dim group-hover:translate-x-0.5 group-hover:text-accent-cyan transition-all">→</span>
       </a>
     </h3>
-    <p class="text-sm text-text-dim leading-relaxed mb-4">
+
+    <!-- Project Description -->
+    <p class="text-xs sm:text-sm text-text-muted leading-relaxed mb-4">
       {project.description}
     </p>
   </div>
+
   <div>
-    <div class="flex flex-wrap gap-1.5 mb-5">
+    <!-- Tech Stack Tags -->
+    <div class="flex flex-wrap gap-1.5 mb-4">
       {project.techStack.map(tech => (
-        <span class="text-xs font-mono text-text-dim bg-surface px-2 py-0.5 rounded">
+        <span class="text-[11px] font-mono text-text-dim bg-code-bg border border-stroke/70 px-2 py-0.5 rounded">
           {tech}
         </span>
       ))}
     </div>
-    <div class="flex items-center justify-between pt-4 border-t border-stroke text-sm">
-      <a href={`/projects/${project.slug}`} class="text-accent hover:underline font-mono text-xs">
-        Read Case Study →
+
+    <!-- Card Action Footer -->
+    <div class="flex items-center justify-between pt-3 border-t border-stroke/70 text-xs font-mono">
+      <a 
+        href={`/projects/${project.slug}`} 
+        class="text-accent-cyan hover:underline inline-flex items-center gap-1"
+      >
+        <span>Case study</span>
+        <span>→</span>
       </a>
-      {project.repoUrl && (
-        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="text-text-dim hover:text-text-main font-mono text-xs">
-          Source Repo ↗
-        </a>
-      )}
+
+      <div class="flex items-center gap-3">
+        {project.repoUrl && (
+          <a 
+            href={project.repoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-text-dim hover:text-text-main transition-colors inline-flex items-center gap-1"
+          >
+            <span>GitHub</span>
+            <span class="text-[10px]">↗</span>
+          </a>
+        )}
+        {project.demoUrl && (
+          <a 
+            href={project.demoUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-accent hover:underline inline-flex items-center gap-1"
+          >
+            <span>Demo</span>
+            <span class="text-[10px]">↗</span>
+          </a>
+        )}
+      </div>
     </div>
   </div>
 </article>

@@ -1,8 +1,82 @@
 ---
 ---
-<footer class="border-t border-stroke py-8 text-center text-xs font-mono text-text-dim">
-  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-    <p>Built with Astro, Tailwind &amp; Firebase • 100% Static</p>
-    <a href="#" class="hover:text-accent transition-colors">Back to top ↑</a>
+<footer class="border-t border-stroke pt-12 pb-16 font-mono text-xs text-text-dim">
+  <div class="max-w-5xl mx-auto px-5 sm:px-8">
+    <!-- Contact Terminal Card -->
+    <div class="p-6 rounded-lg border border-stroke bg-panel mb-12 shadow-card-subtle">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 pb-3 border-b border-stroke/70">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-accent animate-pulse"></span>
+          <span class="text-text-main font-semibold">Get In Touch</span>
+          <span class="text-text-dim">/ Direct Channels</span>
+        </div>
+        <span class="text-[11px] text-text-dim">
+          response time: &lt; 24h
+        </span>
+      </div>
+
+      <p class="text-xs text-text-muted mb-4 font-sans leading-relaxed">
+        Whether you are looking to discuss automated data pipelines, machine learning workflows, or potential collaborations — feel free to reach out directly.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a 
+          href="mailto:kholadegopal12@gmail.com" 
+          class="px-3.5 py-2 rounded bg-surface border border-stroke hover:border-accent/40 text-text-main hover:text-white transition-all inline-flex items-center gap-2"
+        >
+          <span class="text-accent">✉</span>
+          <span>kholadegopal12@gmail.com</span>
+        </a>
+
+        <a 
+          href="https://github.com/GopalKholade" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-3 py-2 rounded bg-surface border border-stroke hover:border-stroke-hover text-text-muted hover:text-text-main transition-all inline-flex items-center gap-1.5"
+        >
+          <span>GitHub</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+
+        <a 
+          href="https://www.linkedin.com/in/gopalkholade" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-3 py-2 rounded bg-surface border border-stroke hover:border-stroke-hover text-text-muted hover:text-text-main transition-all inline-flex items-center gap-1.5"
+        >
+          <span>LinkedIn</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+
+        <a 
+          href="/resume.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="px-3 py-2 rounded border border-accent/30 bg-accent-dim text-accent hover:bg-accent/20 transition-all inline-flex items-center gap-1.5"
+        >
+          <span>Resume (PDF)</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom metadata line -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px]">
+      <div class="flex items-center gap-2 text-text-dim">
+        <span>Gopal Kholade</span>
+        <span>•</span>
+        <span>Pune, IN</span>
+        <span>•</span>
+        <span class="text-text-muted">Static SSG</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <span class="text-text-dim hidden sm:inline">Press <kbd>C</kbd> to copy email</span>
+        <a href="#" class="hover:text-accent-cyan transition-colors inline-flex items-center gap-1">
+          <span>Back to top</span>
+          <span>↑</span>
+        </a>
+      </div>
+    </div>
   </div>
 </footer>

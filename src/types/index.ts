@@ -1,17 +1,26 @@
 export interface Profile {
   name: string;
+  resumeName?: string;
   headline: string;
   bio: string;
   location: string;
+  phone?: string;
   email: string;
   linkedinUrl: string;
   githubUrl: string;
   resumeFile: string;
+  status?: string;
   skills: {
     languages: string[];
     dataAnalytics: string[];
     aiAndML: string[];
     toolsAndCloud: string[];
+  };
+  certifications?: string[];
+  education?: {
+    institution: string;
+    degree: string;
+    duration: string;
   };
 }
 
@@ -52,6 +61,6 @@ export interface Certification {
   issueDate?: string;
   credentialUrl?: string;
   category?: 'data-analytics' | 'ai-ml';
-  published: boolean;
-  order: number;
+  published?: boolean;
+  order?: number;
 }
