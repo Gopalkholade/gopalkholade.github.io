@@ -15,6 +15,23 @@ const defaultCertificatesUrl = process.env.CERTIFICATES_DRIVE_URL || import.meta
 // Filter out foundation, introductory, and basic certs
 const excludeKeywords = ['foundation', 'introductory', 'introduction', 'basics', 'fundamental'];
 
+function detectCategory(title: string): string {
+  const t = title.toLowerCase();
+  if (t.includes('machine learning') || t.includes('deep learning') || t.includes('pytorch') || t.includes('nlp') || t.includes('naive bayes') || t.includes('sentiment') || t.includes('clustering')) {
+    return 'Machine Learning & AI';
+  }
+  if (t.includes('sql') || t.includes('mysql') || t.includes('database') || t.includes('dbms') || t.includes('window function') || t.includes('data cleaning') || t.includes('time series') || t.includes('arima') || t.includes('data analytics') || t.includes('visualization')) {
+    return 'Data Analytics & SQL';
+  }
+  if (t.includes('python') || t.includes('java') || t.includes('c++')) {
+    return 'Software & Systems';
+  }
+  if (t.includes('requirements') || t.includes('business') || t.includes('project') || t.includes('collaboration')) {
+    return 'Business Systems & Analytics';
+  }
+  return 'Engineering Credential';
+}
+
 const filteredCerts = certifications.filter((c) => {
   const title = typeof c === 'string' ? c : (c.title || '');
   const lower = title.toLowerCase();
@@ -27,18 +44,19 @@ const normalizedCerts = filteredCerts.map((c, index) => {
     // Check if issuer is in parentheses e.g. "Title (Issuer)"
     const match = c.match(/^(.*?)\s*\((.*?)\)$/);
     if (match) {
+      const title = match[1].trim();
       return {
-        title: match[1].trim(),
+        title,
         issuer: match[2].trim(),
-        category: match[1].toLowerCase().includes('data') || match[1].toLowerCase().includes('sql') ? 'Data Analytics' : 'Professional Engineering',
+        category: detectCategory(title),
         order: index + 1,
         credentialUrl: defaultCertificatesUrl,
       };
     }
     return {
       title: c,
-      issuer: 'LinkedIn Learning / Industry Credential',
-      category: 'Data & Analytics',
+      issuer: 'Industry Credential',
+      category: detectCategory(c),
       order: index + 1,
       credentialUrl: defaultCertificatesUrl,
     };
@@ -46,7 +64,7 @@ const normalizedCerts = filteredCerts.map((c, index) => {
   return {
     title: c.title,
     issuer: c.issuer || 'Verified Credential',
-    category: c.category || 'Data Analytics',
+    category: c.category || detectCategory(c.title),
     credentialUrl: c.credentialUrl || defaultCertificatesUrl,
     issueDate: c.issueDate,
     order: index + 1

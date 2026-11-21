@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync:repos": "node scripts/sync-github.mjs",
+    "sync:certs": "node scripts/sync-certificates.mjs",
     "generate:resume": "node scripts/generate-resume.mjs"
   },
   "dependencies": {

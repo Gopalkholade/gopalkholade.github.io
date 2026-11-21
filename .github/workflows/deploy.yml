@@ -48,6 +48,11 @@ jobs:
           GITHUB_USERNAME: "GopalKholade"
         run: node scripts/sync-github.mjs
 
+      - name: Stream Verified Certificates from Drive
+        env:
+          CERTIFICATES_DRIVE_URL: ${{ secrets.CERTIFICATES_DRIVE_URL }}
+        run: node scripts/sync-certificates.mjs
+
       - name: Generate Dynamic Resume & Aggregated Skills
         env:
           CERTIFICATES_DRIVE_URL: ${{ secrets.CERTIFICATES_DRIVE_URL }}

@@ -231,9 +231,17 @@ async function buildResume() {
   // 3. Classify topics
   const categorizedSkills = categorizeHarvestedSkills(Array.from(rawTopics));
   const { resumeName, ...profileData } = profile;
+
+  // Filter out foundation, introductory, and basic certs
+  const excludeKeywords = ['foundation', 'introductory', 'introduction', 'basics', 'fundamental'];
+  const filteredCerts = Array.isArray(profile.certifications)
+    ? profile.certifications.filter(c => !excludeKeywords.some(kw => c.toLowerCase().includes(kw)))
+    : [];
+
   const resumeProfile = {
     ...profileData,
     name: resumeName || profile.name || 'Gopal Kholade',
+    certifications: filteredCerts,
   };
 
   // 4. Construct unified payload
