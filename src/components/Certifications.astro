@@ -12,8 +12,17 @@ interface Props {
 const { certifications = [] } = Astro.props;
 const defaultCertificatesUrl = process.env.CERTIFICATES_DRIVE_URL || import.meta.env.CERTIFICATES_DRIVE_URL || '';
 
+// Filter out foundation, introductory, and basic certs
+const excludeKeywords = ['foundation', 'introductory', 'introduction', 'basics', 'fundamental'];
+
+const filteredCerts = certifications.filter((c) => {
+  const title = typeof c === 'string' ? c : (c.title || '');
+  const lower = title.toLowerCase();
+  return !excludeKeywords.some(kw => lower.includes(kw));
+});
+
 // Normalize certification objects
-const normalizedCerts = certifications.map((c, index) => {
+const normalizedCerts = filteredCerts.map((c, index) => {
   if (typeof c === 'string') {
     // Check if issuer is in parentheses e.g. "Title (Issuer)"
     const match = c.match(/^(.*?)\s*\((.*?)\)$/);

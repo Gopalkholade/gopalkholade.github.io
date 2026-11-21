@@ -171,10 +171,6 @@ function generateMarkdownResume(profile, experiences, categorizedSkills, project
     profile.certifications.forEach(cert => {
       md += `- ${cert}\n`;
     });
-    const certDriveUrl = process.env.CERTIFICATES_DRIVE_URL;
-    if (certDriveUrl) {
-      md += `\n*Verified Credentials Archive:* [Google Drive Document](${certDriveUrl})\n`;
-    }
   }
 
   return md;
